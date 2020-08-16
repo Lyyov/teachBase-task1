@@ -117,9 +117,58 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"index.js":[function(require,module,exports) {
-console.log("reactpa");
-},{}],"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+})({"src/newModule.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Rectangle = /*#__PURE__*/function () {
+  function Rectangle(height, width) {
+    _classCallCheck(this, Rectangle);
+
+    this.height = height;
+    this.width = width;
+  }
+
+  _createClass(Rectangle, [{
+    key: "calcArea",
+    value: function calcArea() {
+      return this.height * this.width;
+    }
+  }, {
+    key: "area",
+    get: function get() {
+      return this.calcArea();
+    }
+  }]);
+
+  return Rectangle;
+}();
+
+exports.default = Rectangle;
+},{}],"index.js":[function(require,module,exports) {
+"use strict";
+
+var _newModule = _interopRequireDefault(require("./src/newModule"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var node = document.createElement("H1");
+var textnode = document.createTextNode("First task from Teachbase");
+node.appendChild(textnode);
+document.getElementById("root").appendChild(node);
+var square = new _newModule.default(20, 20);
+console.log(square.calcArea());
+},{"./src/newModule":"src/newModule.js"}],"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -147,7 +196,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63017" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63100" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
